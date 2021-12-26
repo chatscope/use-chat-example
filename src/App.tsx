@@ -5,7 +5,8 @@ import {
     BasicStorage,
     ChatMessage,
     ChatProvider,
-    Conversation, ConversationId,
+    Conversation,
+    ConversationId,
     ConversationRole,
     IStorage,
     MessageContentType,
@@ -28,7 +29,7 @@ import {Footer} from "./components/Footer";
 // This allows you to omit doing this manually, but you need to provide a message generator
 // The message id generator is a function that receives message and returns id for this message
 // The group id generator is a function that returns string
-const messageIdGenerator = (message:ChatMessage<MessageContentType>) => nanoid();
+const messageIdGenerator = (message: ChatMessage<MessageContentType>) => nanoid();
 const groupIdGenerator = () => nanoid();
 
 const akaneStorage = new BasicStorage({groupIdGenerator, messageIdGenerator});
@@ -37,62 +38,62 @@ const emilyStorage = new BasicStorage({groupIdGenerator, messageIdGenerator});
 const joeStorage = new BasicStorage({groupIdGenerator, messageIdGenerator});
 
 // Create serviceFactory
-const serviceFactory = (storage:IStorage, updateState:UpdateState) => {
-  return new ExampleChatService(storage, updateState);
+const serviceFactory = (storage: IStorage, updateState: UpdateState) => {
+    return new ExampleChatService(storage, updateState);
 };
 
 const akane = new User({
     id: akaneModel.name,
-    presence: new Presence({ status: UserStatus.Available, description:""}),
+    presence: new Presence({status: UserStatus.Available, description: ""}),
     firstName: "",
     lastName: "",
     username: akaneModel.name,
-    email:"",
+    email: "",
     avatar: akaneModel.avatar,
-    bio:""
+    bio: ""
 });
 
 const emily = new User({
     id: emilyModel.name,
-    presence: new Presence({ status: UserStatus.Available, description:""}),
+    presence: new Presence({status: UserStatus.Available, description: ""}),
     firstName: "",
     lastName: "",
     username: emilyModel.name,
-    email:"",
+    email: "",
     avatar: emilyModel.avatar,
-    bio:""
+    bio: ""
 });
 
 const eliot = new User({
     id: eliotModel.name,
-    presence: new Presence({ status: UserStatus.Available, description:""}),
+    presence: new Presence({status: UserStatus.Available, description: ""}),
     firstName: "",
     lastName: "",
     username: eliotModel.name,
-    email:"",
+    email: "",
     avatar: eliotModel.avatar,
-    bio:""
+    bio: ""
 });
 
 const joe = new User({
     id: joeModel.name,
-    presence: new Presence({ status: UserStatus.Available, description:""}),
+    presence: new Presence({status: UserStatus.Available, description: ""}),
     firstName: "",
     lastName: "",
     username: joeModel.name,
-    email:"",
+    email: "",
     avatar: joeModel.avatar,
-    bio:""
+    bio: ""
 });
 
 const chats = [
-    { name: "Akane", storage: akaneStorage },
-    { name: "Eliot", storage: eliotStorage },
-    { name: "Emily", storage: emilyStorage },
-    { name: "Joe", storage: joeStorage }
+    {name: "Akane", storage: akaneStorage},
+    {name: "Eliot", storage: eliotStorage},
+    {name: "Emily", storage: emilyStorage},
+    {name: "Joe", storage: joeStorage}
 ];
 
-function createConversation(id:ConversationId,name:string):Conversation {
+function createConversation(id: ConversationId, name: string): Conversation {
     return new Conversation({
         id,
         participants: [
@@ -108,99 +109,99 @@ function createConversation(id:ConversationId,name:string):Conversation {
 }
 
 // Add users and conversations to the states
-chats.forEach( c => {
-    
-    users.forEach( u => {
+chats.forEach(c => {
+
+    users.forEach(u => {
         if (u.name !== c.name) {
-            c.storage.addUser( new User({
+            c.storage.addUser(new User({
                 id: u.name,
-                presence: new Presence({ status: UserStatus.Available, description:""}),
+                presence: new Presence({status: UserStatus.Available, description: ""}),
                 firstName: "",
                 lastName: "",
                 username: u.name,
-                email:"",
+                email: "",
                 avatar: u.avatar,
-                bio:""
+                bio: ""
             }));
 
             const conversationId = nanoid();
-            
-            const myConversation = c.storage.getState().conversations.find( cv => typeof cv.participants.find( p => p.id === u.name) !== "undefined");
-            if ( !myConversation ) {
-                
+
+            const myConversation = c.storage.getState().conversations.find(cv => typeof cv.participants.find(p => p.id === u.name) !== "undefined");
+            if (!myConversation) {
+
                 c.storage.addConversation(createConversation(conversationId, u.name));
-                
-                const chat = chats.find( chat => chat.name === u.name);
-                
-                if ( chat ) {
-                    
-                    const hisConversation = chat.storage.getState().conversations.find( cv => typeof cv.participants.find( p => p.id === c.name) !== "undefined");
-                    if ( !hisConversation ) {
-                        chat.storage.addConversation(createConversation(conversationId,c.name));
+
+                const chat = chats.find(chat => chat.name === u.name);
+
+                if (chat) {
+
+                    const hisConversation = chat.storage.getState().conversations.find(cv => typeof cv.participants.find(p => p.id === c.name) !== "undefined");
+                    if (!hisConversation) {
+                        chat.storage.addConversation(createConversation(conversationId, c.name));
                     }
 
                 }
-                
+
             }
-            
+
         }
     });
-    
+
 });
 
 function App() {
-    
-  return (
-    <Container fluid className="h-100 p-4 d-flex flex-column">
-        <div className="flex-grow-1 position-relative">
-            <Row className="h-50 pb-2 flex-nowrap">
-                <Col>
-                    <ChatProvider serviceFactory={serviceFactory} storage={akaneStorage} config={{
-                      typingThrottleTime: 250,
-                      typingDebounceTime: 900,
-                      debounceTyping: true, 
-                      autoDraft: AutoDraft.Save | AutoDraft.Restore
-                    }}>
-                      <Chat user={akane}/>
-                    </ChatProvider>
-                </Col>
-                <Col>
-                    <ChatProvider serviceFactory={serviceFactory} storage={eliotStorage} config={{
-                        typingThrottleTime: 250,
-                        typingDebounceTime: 900,
-                        debounceTyping: true,
-                        autoDraft: AutoDraft.Save | AutoDraft.Restore
-                    }}>
-                        <Chat user={eliot}/>
-                    </ChatProvider>    
-                </Col>
-            </Row>
-            <Row className="h-50 pt-2 flex-nowrap">
-                <Col>
-                    <ChatProvider serviceFactory={serviceFactory} storage={emilyStorage} config={{
-                        typingThrottleTime: 250,
-                        typingDebounceTime: 900,
-                        debounceTyping: true,
-                        autoDraft: AutoDraft.Save | AutoDraft.Restore
-                    }}>
-                        <Chat user={emily}/>
-                    </ChatProvider>
-                </Col>
-                <Col>
-                    <ChatProvider serviceFactory={serviceFactory} storage={joeStorage} config={{
-                        typingThrottleTime: 250,
-                        typingDebounceTime: 900,
-                        debounceTyping: true,
-                        autoDraft: AutoDraft.Save | AutoDraft.Restore
-                    }}>
-                        <Chat user={joe}/>
-                    </ChatProvider>
-                </Col>
-            </Row>
+
+    return (
+        <div className="h-100 d-flex flex-column overflow-hidden">
+            <Container fluid className="p-4 flex-grow-1 position-relative overflow-hidden">
+                <Row className="h-50 pb-2 flex-nowrap">
+                    <Col>
+                        <ChatProvider serviceFactory={serviceFactory} storage={akaneStorage} config={{
+                            typingThrottleTime: 250,
+                            typingDebounceTime: 900,
+                            debounceTyping: true,
+                            autoDraft: AutoDraft.Save | AutoDraft.Restore
+                        }}>
+                            <Chat user={akane}/>
+                        </ChatProvider>
+                    </Col>
+                    <Col>
+                        <ChatProvider serviceFactory={serviceFactory} storage={eliotStorage} config={{
+                            typingThrottleTime: 250,
+                            typingDebounceTime: 900,
+                            debounceTyping: true,
+                            autoDraft: AutoDraft.Save | AutoDraft.Restore
+                        }}>
+                            <Chat user={eliot}/>
+                        </ChatProvider>
+                    </Col>
+                </Row>
+                <Row className="h-50 pt-2 flex-nowrap">
+                    <Col>
+                        <ChatProvider serviceFactory={serviceFactory} storage={emilyStorage} config={{
+                            typingThrottleTime: 250,
+                            typingDebounceTime: 900,
+                            debounceTyping: true,
+                            autoDraft: AutoDraft.Save | AutoDraft.Restore
+                        }}>
+                            <Chat user={emily}/>
+                        </ChatProvider>
+                    </Col>
+                    <Col>
+                        <ChatProvider serviceFactory={serviceFactory} storage={joeStorage} config={{
+                            typingThrottleTime: 250,
+                            typingDebounceTime: 900,
+                            debounceTyping: true,
+                            autoDraft: AutoDraft.Save | AutoDraft.Restore
+                        }}>
+                            <Chat user={joe}/>
+                        </ChatProvider>
+                    </Col>
+                </Row>
+            </Container>
+            <Footer/>
         </div>
-        <Footer />
-    </Container>
-  );
+    );
 }
 
 export default App;
