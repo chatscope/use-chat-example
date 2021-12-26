@@ -22,6 +22,7 @@ import {nanoid} from "nanoid";
 import {Col, Container, Row} from "react-bootstrap";
 import {akaneModel, eliotModel, emilyModel, joeModel, users} from "./data/data";
 import {AutoDraft} from "@chatscope/use-chat/dist/enums/AutoDraft";
+import {Footer} from "./components/Footer";
 
 // sendMessage and addMessage methods can automagically generate id for messages and groups
 // This allows you to omit doing this manually, but you need to provide a message generator
@@ -150,51 +151,54 @@ chats.forEach( c => {
 function App() {
     
   return (
-    <Container fluid className="h-100 p-4">
-        <Row className="h-50 pb-2 flex-nowrap">
-            <Col>
-                <ChatProvider serviceFactory={serviceFactory} storage={akaneStorage} config={{
-                  typingThrottleTime: 250,
-                  typingDebounceTime: 900,
-                  debounceTyping: true, 
-                  autoDraft: AutoDraft.Save | AutoDraft.Restore
-                }}>
-                  <Chat user={akane}/>
-                </ChatProvider>
-            </Col>
-            <Col>
-                <ChatProvider serviceFactory={serviceFactory} storage={eliotStorage} config={{
-                    typingThrottleTime: 250,
-                    typingDebounceTime: 900,
-                    debounceTyping: true,
-                    autoDraft: AutoDraft.Save | AutoDraft.Restore
-                }}>
-                    <Chat user={eliot}/>
-                </ChatProvider>    
-            </Col>
-        </Row>
-        <Row className="h-50 pt-2 flex-nowrap">
-            <Col>
-                <ChatProvider serviceFactory={serviceFactory} storage={emilyStorage} config={{
-                    typingThrottleTime: 250,
-                    typingDebounceTime: 900,
-                    debounceTyping: true,
-                    autoDraft: AutoDraft.Save | AutoDraft.Restore
-                }}>
-                    <Chat user={emily}/>
-                </ChatProvider>
-            </Col>
-            <Col>
-                <ChatProvider serviceFactory={serviceFactory} storage={joeStorage} config={{
-                    typingThrottleTime: 250,
-                    typingDebounceTime: 900,
-                    debounceTyping: true,
-                    autoDraft: AutoDraft.Save | AutoDraft.Restore
-                }}>
-                    <Chat user={joe}/>
-                </ChatProvider>
-            </Col>
-        </Row>
+    <Container fluid className="h-100 p-4 d-flex flex-column">
+        <div className="flex-grow-1 position-relative">
+            <Row className="h-50 pb-2 flex-nowrap">
+                <Col>
+                    <ChatProvider serviceFactory={serviceFactory} storage={akaneStorage} config={{
+                      typingThrottleTime: 250,
+                      typingDebounceTime: 900,
+                      debounceTyping: true, 
+                      autoDraft: AutoDraft.Save | AutoDraft.Restore
+                    }}>
+                      <Chat user={akane}/>
+                    </ChatProvider>
+                </Col>
+                <Col>
+                    <ChatProvider serviceFactory={serviceFactory} storage={eliotStorage} config={{
+                        typingThrottleTime: 250,
+                        typingDebounceTime: 900,
+                        debounceTyping: true,
+                        autoDraft: AutoDraft.Save | AutoDraft.Restore
+                    }}>
+                        <Chat user={eliot}/>
+                    </ChatProvider>    
+                </Col>
+            </Row>
+            <Row className="h-50 pt-2 flex-nowrap">
+                <Col>
+                    <ChatProvider serviceFactory={serviceFactory} storage={emilyStorage} config={{
+                        typingThrottleTime: 250,
+                        typingDebounceTime: 900,
+                        debounceTyping: true,
+                        autoDraft: AutoDraft.Save | AutoDraft.Restore
+                    }}>
+                        <Chat user={emily}/>
+                    </ChatProvider>
+                </Col>
+                <Col>
+                    <ChatProvider serviceFactory={serviceFactory} storage={joeStorage} config={{
+                        typingThrottleTime: 250,
+                        typingDebounceTime: 900,
+                        debounceTyping: true,
+                        autoDraft: AutoDraft.Save | AutoDraft.Restore
+                    }}>
+                        <Chat user={joe}/>
+                    </ChatProvider>
+                </Col>
+            </Row>
+        </div>
+        <Footer />
     </Container>
   );
 }
