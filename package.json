@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@chatscope/chat-ui-kit-react": "^1.8.1",
-    "@chatscope/chat-ui-kit-styles": "^1.2.0",
+    "@chatscope/chat-ui-kit-react": "^1.9.7",
+    "@chatscope/chat-ui-kit-styles": "^1.2.3",
     "@chatscope/use-chat": "1.0.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -19,7 +19,7 @@
     "react-bootstrap": "^1.5.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "typescript": "^4.2.4",
+    "typescript": "^4.7.4",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

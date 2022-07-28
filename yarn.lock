@@ -1201,10 +1201,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@chatscope/chat-ui-kit-react@^1.8.1":
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/@chatscope/chat-ui-kit-react/-/chat-ui-kit-react-1.8.1.tgz#69c3926e176c2f579d4d400ebce14d5800b89d7f"
-  integrity sha512-k0EjWPmVWw4v5QKeJVCn9OzzHhCnmKy0JOB9j+ElNvfjHliY4WXwOwa+G57D6tthXyyosxrRJLpWSb0oKjiFLg==
+"@chatscope/chat-ui-kit-react@^1.9.7":
+  version "1.9.7"
+  resolved "https://registry.yarnpkg.com/@chatscope/chat-ui-kit-react/-/chat-ui-kit-react-1.9.7.tgz#9e4a6c49d184bb0fc7723738f2839e5c6375c5e8"
+  integrity sha512-1Yj9ktmP/U576M9MFhBJ4me/HHMCcosBrJDCtZePnFShquAQIUPB2kOeNy+zMNIAYqYHkzj7VEm2DZfRxaFLFw==
   dependencies:
     "@chatscope/chat-ui-kit-styles" "^1.2.0"
     "@fortawesome/fontawesome-free" "^5.12.1"
@@ -1218,6 +1218,11 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@chatscope/chat-ui-kit-styles/-/chat-ui-kit-styles-1.2.0.tgz#5b5061a9701bd35355a76f3c1487e3ec30c6f247"
   integrity sha512-ALFkVTKL32nNl/GJh1yEv6xxtJHH/hxu5HsrJvq7Xz/m8eL1apSRBFyJZqA3XmcEJ/++AuV+um7YCGA/MWoFcg==
+
+"@chatscope/chat-ui-kit-styles@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@chatscope/chat-ui-kit-styles/-/chat-ui-kit-styles-1.2.3.tgz#85dc8d57b508b4742a1d384a2a6f9137648f560b"
+  integrity sha512-shNhnvtVZjLllHlyEWADVzX9WTGwDhMoM8eX26/joXSleFvzS05lf1TZTruJMamw1ea7S/uNw0iG6OxTqIeuAw==
 
 "@chatscope/use-chat@1.0.2":
   version "1.0.2"
@@ -10810,10 +10815,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^4.2.4:
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.3.2.tgz#399ab18aac45802d6f2498de5054fcbbe716a805"
-  integrity sha512-zZ4hShnmnoVnAHpVHWpTcxdv7dWP60S2FsydQLV8V5PbS3FifjWFFRiHSWpDJahly88PRyV5teTSLoq4eG7mKw==
+typescript@^4.7.4:
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.4.tgz#1a88596d1cf47d59507a1bcdfb5b9dfe4d488235"
+  integrity sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==
 
 unbox-primitive@^1.0.1:
   version "1.0.1"
