@@ -1,6 +1,6 @@
 {
   "name": "@chatscope/use-chat-example",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@chatscope/chat-ui-kit-react": "^1.9.7",
